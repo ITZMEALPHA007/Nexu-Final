@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Complete Your Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #f6f5f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+                  0 10px 10px rgba(0,0,0,0.22);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #FF4B2B;
+      font-size: 2em;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px 15px;
+      margin-top: 8px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      background-color: #eee;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 25px;
+      background: #FF4B2B;
+      color: #fff;
+      border: none;
+      font-weight: bold;
+      border-radius: 20px;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+      display: none;
+      font-size: 14px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Complete Your Profile</h2>
+    <form id="profileForm" novalidate>
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" required placeholder="Enter your phone number" />
+
+      <label for="gender">Gender</label>
+      <select id="gender" required>
+        <option value="">Select</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+        <option>Prefer not to say</option>
+      </select>
+
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" required />
+
+      <label for="college">College</label>
+      <input type="text" id="college" required placeholder="Your college name" />
+
+      <label for="profession">Profession</label>
+      <input type="text" id="profession" required placeholder="Student, Developer, etc." />
+
+      <label for="role">Who are you?</label>
+      <select id="role" required>
+        <option value="">Select</option>
+        <option>Organiser</option>
+        <option>Participant</option>
+      </select>
+
+      <div class="error" id="formError">Please fill in all fields correctly.</div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("profileForm");
+    const error = document.getElementById("formError");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const phone = document.getElementById("phone").value.trim();
+      const gender = document.getElementById("gender").value;
+      const dob = document.getElementById("dob").value;
+      const college = document.getElementById("college").value.trim();
+      const profession = document.getElementById("profession").value.trim();
+      const role = document.getElementById("role").value;
+
+      const phoneValid = /^[0-9]{10}$/.test(phone);
+
+      if (!phoneValid || !gender || !dob || !college || !profession || !role) {
+        error.style.display = "block";
+      } else {
+        error.style.display = "none";
+        alert("Profile submitted successfully!");
+        window.location.href = "home.html";
+      }
+    });
+  </script>
+</body>
+</html>
